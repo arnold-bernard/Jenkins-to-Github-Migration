@@ -1,0 +1,13 @@
+{
+  "name": "jenkins-github-migration-demo",
+  "version": "1.0.0",
+  "description": "DevOps Shack demo application for migrating a Jenkins pipeline to GitHub Actions",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

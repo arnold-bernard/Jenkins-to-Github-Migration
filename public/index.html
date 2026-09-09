@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="DevOps Shack demo application for migrating Jenkins pipelines to GitHub Actions."
+    />
+    <title>Jenkins to GitHub Actions Migration | DevOps Shack</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="DevOps Shack home">
+          <span class="brand-mark" aria-hidden="true">DS</span>
+          <span>
+            <strong>DevOps Shack</strong>
+            <small>Migration Lab</small>
+          </span>
+        </a>
+
+        <nav aria-label="Primary navigation">
+          <a href="#workflow">Workflow</a>
+          <a href="#comparison">Comparison</a>
+          <a href="#pipeline">Pipeline</a>
+        </nav>
+
+        <div class="api-status" id="api-status" role="status" aria-live="polite">
+          <span class="status-dot"></span>
+          <span>Checking API</span>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow"><span>LIVE DEMO</span> CI/CD Modernization</div>
+            <h1>
+              Pipeline <em>Migration</em><br />
+              made practical.
+            </h1>
+            <p>
+              A hands-on DevOps Shack application demonstrating how a Jenkins
+              pipeline moves to a secure, maintainable GitHub Actions workflow.
+            </p>
+
+            <div class="hero-actions">
+              <button class="primary-button" id="run-demo" type="button">
+                <span>Run migration demo</span>
+                <span aria-hidden="true">→</span>
+              </button>
+              <a class="secondary-button" href="#workflow">Explore workflow</a>
+            </div>
+
+            <div class="quick-stats" aria-label="Demo highlights">
+              <div><strong>6</strong><span>Pipeline stages</span></div>
+              <div><strong>1</strong><span>Unified workflow</span></div>
+              <div><strong>0</strong><span>Static secrets</span></div>
+            </div>
+          </div>
+
+          <div class="migration-visual" aria-label="Jenkins to GitHub Actions migration">
+            <div class="visual-glow glow-one"></div>
+            <div class="visual-glow glow-two"></div>
+
+            <div class="tool-card jenkins-card">
+              <div class="tool-logo jenkins-logo" aria-hidden="true">J</div>
+              <div>
+                <span>FROM</span>
+                <strong>Jenkins</strong>
+                <small>Jenkinsfile</small>
+              </div>
+            </div>
+
+            <div class="migration-arrow" aria-hidden="true">
+              <span></span>
+              <strong>MIGRATE</strong>
+              <i>→</i>
+            </div>
+
+            <div class="tool-card github-card">
+              <div class="tool-logo github-logo" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img">
+                  <path d="M12 2.4a9.8 9.8 0 0 0-3.1 19.1c.5.1.7-.2.7-.5v-1.9c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 0 1.6 1.1 1.6 1.1.9 1.6 2.4 1.1 2.9.9.1-.7.4-1.1.7-1.4-2.2-.3-4.6-1.1-4.6-4.9 0-1.1.4-2 1-2.6-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.1 9.1 0 0 1 4.9 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.5 1 2.6 0 3.8-2.3 4.6-4.6 4.9.4.3.7.9.7 1.8V21c0 .3.2.6.7.5A9.8 9.8 0 0 0 12 2.4Z" />
+                </svg>
+              </div>
+              <div>
+                <span>TO</span>
+                <strong>GitHub Actions</strong>
+                <small>workflow.yml</small>
+              </div>
+            </div>
+
+            <div class="code-window">
+              <div class="window-bar">
+                <span></span><span></span><span></span>
+                <small>ci-cd.yml</small>
+              </div>
+              <pre><code><b>name:</b> DevOps Shack CI/CD
+
+<b>on:</b>
+  <span>push:</span>
+    <span>branches:</span> [ main ]
+
+<b>jobs:</b>
+  <span>build-and-deploy:</span>
+    <span>runs-on:</span> ubuntu-latest</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="section workflow-section" id="workflow">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">MIGRATION WORKFLOW</span>
+              <h2>One pipeline. Six clear stages.</h2>
+            </div>
+            <p>Follow the same delivery logic while moving orchestration into your repository.</p>
+          </div>
+
+          <div class="pipeline-track" id="pipeline-track">
+            <article class="stage-card" data-stage="0">
+              <span class="stage-number">01</span>
+              <div class="stage-icon blue">⌘</div>
+              <h3>Source</h3>
+              <p>Checkout code</p>
+              <span class="stage-state">Ready</span>
+            </article>
+            <article class="stage-card" data-stage="1">
+              <span class="stage-number">02</span>
+              <div class="stage-icon purple">✓</div>
+              <h3>Test</h3>
+              <p>Run Node tests</p>
+              <span class="stage-state">Ready</span>
+            </article>
+            <article class="stage-card" data-stage="2">
+              <span class="stage-number">03</span>
+              <div class="stage-icon orange">◇</div>
+              <h3>Build</h3>
+              <p>Create image</p>
+              <span class="stage-state">Ready</span>
+            </article>
+            <article class="stage-card" data-stage="3">
+              <span class="stage-number">04</span>
+              <div class="stage-icon green">⌁</div>
+              <h3>Security</h3>
+              <p>Scan artifacts</p>
+              <span class="stage-state">Ready</span>
+            </article>
+            <article class="stage-card" data-stage="4">
+              <span class="stage-number">05</span>
+              <div class="stage-icon cyan">⬡</div>
+              <h3>Container</h3>
+              <p>Push registry</p>
+              <span class="stage-state">Ready</span>
+            </article>
+            <article class="stage-card" data-stage="5">
+              <span class="stage-number">06</span>
+              <div class="stage-icon pink">↗</div>
+              <h3>Deploy</h3>
+              <p>Ship application</p>
+              <span class="stage-state">Ready</span>
+            </article>
+          </div>
+        </section>
+
+        <section class="section comparison-section" id="comparison">
+          <div class="comparison-copy">
+            <span class="section-kicker">WHY MIGRATE?</span>
+            <h2>Same delivery goals.<br />A simpler developer experience.</h2>
+            <p>
+              Bring automation closer to the code with native pull-request checks,
+              reusable workflows, and repository-level visibility.
+            </p>
+          </div>
+
+          <div class="comparison-table" role="table" aria-label="Jenkins and GitHub Actions comparison">
+            <div class="table-row table-header" role="row">
+              <span role="columnheader">Capability</span>
+              <span role="columnheader">Jenkins</span>
+              <span role="columnheader">GitHub Actions</span>
+            </div>
+            <div class="table-row" role="row">
+              <span role="cell">Configuration</span>
+              <span role="cell">Jenkinsfile</span>
+              <span role="cell" class="highlight-cell">YAML workflow</span>
+            </div>
+            <div class="table-row" role="row">
+              <span role="cell">Infrastructure</span>
+              <span role="cell">Controller + agents</span>
+              <span role="cell" class="highlight-cell">Hosted / self-hosted runners</span>
+            </div>
+            <div class="table-row" role="row">
+              <span role="cell">Pull request checks</span>
+              <span role="cell">Plugin integration</span>
+              <span role="cell" class="highlight-cell">Native checks</span>
+            </div>
+            <div class="table-row" role="row">
+              <span role="cell">Marketplace</span>
+              <span role="cell">Plugins</span>
+              <span role="cell" class="highlight-cell">Reusable actions</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section cta-section" id="pipeline">
+          <div>
+            <span class="section-kicker light">READY TO SHIP</span>
+            <h2>Modernize the pipeline.<br />Keep the delivery moving.</h2>
+          </div>
+          <div class="cta-panel">
+            <div class="deployment-status">
+              <span class="success-icon">✓</span>
+              <div>
+                <strong id="deployment-title">Demo environment ready</strong>
+                <span id="deployment-copy">All pipeline stages are waiting to run.</span>
+              </div>
+            </div>
+            <button class="light-button" id="run-demo-secondary" type="button">Start workflow</button>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="brand footer-brand">
+          <span class="brand-mark" aria-hidden="true">DS</span>
+          <strong>DevOps Shack</strong>
+        </div>
+        <p>Learn. Build. Automate.</p>
+        <p>Jenkins → GitHub Actions Migration Demo</p>
+      </footer>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
