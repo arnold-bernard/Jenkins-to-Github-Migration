@@ -2,409 +2,327 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>Jenkins → GitHub Actions Migration | Arnold Bernard</title>
-
-<meta name="description"
-content="Production-inspired Jenkins to GitHub Actions migration project showcasing Docker, AWS EC2, Amazon ECR and GitHub Actions.">
+<title>Jenkins → GitHub Actions | Arnold Bernard</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<div class="background-grid"></div>
+<div class="noise"></div>
 
-<div class="page-shell">
+<header class="command-bar">
 
-<header class="topbar">
-
-<div class="brand">
-<div class="brand-logo">AB</div>
+<div class="identity">
+<div class="avatar">AB</div>
 
 <div>
-<h3>Arnold Bernard</h3>
-<span>DevOps Engineer • Migration Lab</span>
-</div>
+<h2>Arnold Bernard</h2>
+<p>CI/CD Migration Command Center</p>
 </div>
 
-<nav>
-<a href="#architecture">Architecture</a>
-<a href="#workflow">Workflow</a>
-<a href="#decisions">Decisions</a>
-<a href="#timeline">Timeline</a>
-</nav>
+</div>
 
-<button id="theme-toggle" class="theme-toggle">
-🌙
-</button>
+<div class="terminal-pill">
+SYSTEM ONLINE
+</div>
 
 </header>
 
 <main>
 
-<!-- HERO -->
+<section class="intro">
 
-<section class="hero">
+<div class="terminal-window">
 
-<div class="hero-left">
-
-<div class="badge">
-LIVE PORTFOLIO PROJECT
+<div class="terminal-head">
+<div class="dots"></div>
+<span>migration-session.log</span>
 </div>
 
-<h1>
-Jenkins →
-<span>GitHub Actions</span>
-Migration
-</h1>
+<div class="terminal-body">
 
-<p>
-A production-inspired CI/CD migration demonstrating how a traditional
-Jenkins pipeline can be modernized using GitHub Actions while
-preserving deployment reliability, improving security, and reducing
-infrastructure overhead.
+<p>> boot</p>
+<p>> loading Jenkins migration environment...</p>
+<p>> AWS authentication successful.</p>
+<p>> Docker daemon connected.</p>
+<p>> GitHub repository detected.</p>
+
+<h1>Jenkins → GitHub Actions</h1>
+
+<p class="description">
+This isn't a tutorial. It's a production-style migration where I rebuilt a Jenkins-driven delivery pipeline using GitHub Actions, Docker, AWS EC2, Amazon ECR and Node.js while documenting every engineering decision.
 </p>
 
-<div class="hero-buttons">
+<div class="terminal-actions">
 
-<button id="run-demo" class="primary-btn">
-Run Migration Demo
-</button>
+<button id="run-demo">> start migration</button>
 
-<a href="#workflow" class="secondary-btn">
-Explore Pipeline
-</a>
+<button class="ghost">view architecture</button>
 
 </div>
 
-<div class="stats">
-
-<div>
-<h3>6</h3>
-<span>Pipeline Stages</span>
 </div>
 
-<div>
-<h3>AWS</h3>
-<span>EC2 + ECR</span>
 </div>
 
-<div>
+<div class="status-grid">
+
+<div class="status-card online">
+<span>Pipeline</span>
+<h3>Ready</h3>
+</div>
+
+<div class="status-card">
+<span>Cloud</span>
+<h3>AWS EC2</h3>
+</div>
+
+<div class="status-card">
+<span>Registry</span>
+<h3>Amazon ECR</h3>
+</div>
+
+<div class="status-card">
+<span>Runtime</span>
 <h3>Docker</h3>
-<span>Containerized</span>
 </div>
 
+</div>
+
+</section>
+
+<section class="mission">
+
+<div class="section-label">MISSION LOG</div>
+
+<h2>Every change was intentional.</h2>
+
+<div class="timeline">
+
+<div class="checkpoint">
+<div class="dot"></div>
 <div>
-<h3>Node.js</h3>
-<span>Demo App</span>
+<h3>Repository Created</h3>
+<p>Initialized the migration workspace.</p>
+</div>
 </div>
 
+<div class="checkpoint">
+<div class="dot"></div>
+<div>
+<h3>Security Group</h3>
+<p>Configured ports 80, 443 and 3000–6000.</p>
+</div>
 </div>
 
+<div class="checkpoint">
+<div class="dot"></div>
+<div>
+<h3>IAM Role</h3>
+<p>Attached an EC2 PowerUser role for ECR access.</p>
+</div>
 </div>
 
-<div class="hero-right">
-
-<div class="migration-card">
-
-<div class="tool from">
-<h4>FROM</h4>
-<h2>Jenkins</h2>
-<p>Jenkinsfile</p>
+<div class="checkpoint">
+<div class="dot"></div>
+<div>
+<h3>Docker + Jenkins</h3>
+<p>Provisioned Docker, Java 21 and Jenkins.</p>
+</div>
 </div>
 
-<div class="arrow">→</div>
-
-<div class="tool to">
-<h4>TO</h4>
-<h2>GitHub Actions</h2>
-<p>workflow.yml</p>
+<div class="checkpoint">
+<div class="dot"></div>
+<div>
+<h3>Permissions Fix</h3>
+<p>Granted Jenkins access to the Docker daemon.</p>
+</div>
 </div>
 
+<div class="checkpoint">
+<div class="dot"></div>
+<div>
+<h3>Migration</h3>
+<p>Converted the pipeline to GitHub Actions.</p>
 </div>
-
-<div class="code-window">
-
-<div class="window-bar">
-<span></span><span></span><span></span>
-</div>
-
-<pre><code>name: CI/CD Migration
-
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-  deploy:
-    needs: build</code></pre>
-
 </div>
 
 </div>
 
 </section>
 
-<!-- TECH STACK -->
+<section class="network">
 
-<section class="tech-stack">
+<div class="section-label">SYSTEM TOPOLOGY</div>
 
-<div class="section-title">
-<h2>Technology Stack</h2>
-<p>Tools used throughout the migration journey.</p>
-</div>
+<h2>Deployment flow</h2>
 
-<div class="tech-grid">
+<div class="network-map">
 
-<div class="tech-card">🐳 Docker</div>
-<div class="tech-card">☁️ AWS EC2</div>
-<div class="tech-card">📦 Amazon ECR</div>
-<div class="tech-card">⚙️ Jenkins</div>
-<div class="tech-card">🚀 GitHub Actions</div>
-<div class="tech-card">🟢 Node.js</div>
+<div class="node">Developer</div>
 
-</div>
+<div class="connector"></div>
 
-</section>
+<div class="node">GitHub</div>
 
-<!-- ARCHITECTURE -->
+<div class="connector"></div>
 
-<section id="architecture" class="architecture">
+<div class="node">GitHub Actions</div>
 
-<div class="section-title">
-<h2>Migration Architecture</h2>
-<p>End-to-end delivery flow used throughout this project.</p>
-</div>
+<div class="connector"></div>
 
-<div class="architecture-flow">
+<div class="node">Docker Build</div>
 
-<div class="flow-node">Developer</div>
-<div class="flow-arrow">↓</div>
+<div class="connector"></div>
 
-<div class="flow-node">GitHub</div>
-<div class="flow-arrow">↓</div>
+<div class="node">Amazon ECR</div>
 
-<div class="flow-node">GitHub Actions</div>
-<div class="flow-arrow">↓</div>
+<div class="connector"></div>
 
-<div class="flow-node">Docker Build</div>
-<div class="flow-arrow">↓</div>
-
-<div class="flow-node">Amazon ECR</div>
-<div class="flow-arrow">↓</div>
-
-<div class="flow-node">AWS EC2</div>
+<div class="node">EC2</div>
 
 </div>
 
 </section>
 
-<!-- WORKFLOW -->
+<section class="pipeline-section" id="workflow">
 
-<section id="workflow" class="workflow">
+<div class="section-label">LIVE EXECUTION</div>
 
-<div class="section-title">
-<h2>CI/CD Workflow</h2>
-<p>Each stage mirrors the original Jenkins pipeline while adopting GitHub Actions best practices.</p>
-</div>
+<h2>Pipeline stages</h2>
 
-<div id="pipeline-track" class="pipeline-grid">
+<div class="pipeline-grid">
 
 <div class="stage-card" data-stage="0">
-<div class="icon">⌘</div>
-<h3>Source</h3>
-<p>Checkout Repository</p>
-<span>Ready</span>
+<div class="binary">0001</div>
+<h3>Checkout</h3>
+<span>READY</span>
 </div>
 
 <div class="stage-card" data-stage="1">
-<div class="icon">✓</div>
-<h3>Test</h3>
-<p>Run Node Tests</p>
-<span>Ready</span>
+<div class="binary">0010</div>
+<h3>Tests</h3>
+<span>READY</span>
 </div>
 
 <div class="stage-card" data-stage="2">
-<div class="icon">◇</div>
-<h3>Build</h3>
-<p>Create Docker Image</p>
-<span>Ready</span>
+<div class="binary">0011</div>
+<h3>Docker Build</h3>
+<span>READY</span>
 </div>
 
 <div class="stage-card" data-stage="3">
-<div class="icon">🛡️</div>
+<div class="binary">0100</div>
 <h3>Security</h3>
-<p>Validate Configuration</p>
-<span>Ready</span>
+<span>READY</span>
 </div>
 
 <div class="stage-card" data-stage="4">
-<div class="icon">⬡</div>
-<h3>Registry</h3>
-<p>Push to Amazon ECR</p>
-<span>Ready</span>
+<div class="binary">0101</div>
+<h3>ECR Push</h3>
+<span>READY</span>
 </div>
 
 <div class="stage-card" data-stage="5">
-<div class="icon">🚀</div>
+<div class="binary">0110</div>
 <h3>Deploy</h3>
-<p>Deploy to EC2</p>
-<span>Ready</span>
+<span>READY</span>
 </div>
 
 </div>
 
 </section>
-
-<!-- DECISIONS -->
-
-<section id="decisions" class="decisions">
-
-<div class="section-title">
-<h2>Engineering Decisions</h2>
-<p>Why certain production choices were made during this migration.</p>
-</div>
-
-<div class="decision-grid">
-
-<div class="decision-card">
-<h3>IAM Role over Access Keys</h3>
-<p>Used EC2 instance roles instead of hardcoded AWS credentials for secure ECR authentication.</p>
-</div>
-
-<div class="decision-card">
-<h3>Docker Group Permissions</h3>
-<p>Granted Jenkins Docker permissions at the operating system level instead of inside the pipeline.</p>
-</div>
-
-<div class="decision-card">
-<h3>Official Docker Repository</h3>
-<p>Installed Docker CE from Docker's repository instead of Ubuntu's default package.</p>
-</div>
-
-<div class="decision-card">
-<h3>Hosted GitHub Runners</h3>
-<p>Designed the migration around GitHub-hosted runners to minimize infrastructure maintenance.</p>
-</div>
-
-</div>
-
-</section>
-
-<!-- COMPARISON -->
 
 <section class="comparison">
 
-<div class="section-title">
-<h2>Jenkins vs GitHub Actions</h2>
+<div class="section-label">BEFORE / AFTER</div>
+
+<h2>Migration outcome</h2>
+
+<div class="matrix">
+
+<div class="matrix-column">
+
+<h3>Jenkins</h3>
+
+<ul>
+<li>Controller management</li>
+<li>Plugin dependency</li>
+<li>Jenkinsfile</li>
+<li>Manual maintenance</li>
+
+</ul>
+
 </div>
 
-<div class="comparison-table">
+<div class="matrix-column highlight">
 
-<div class="row head">
-<div>Capability</div>
-<div>Jenkins</div>
-<div>GitHub Actions</div>
+<h3>GitHub Actions</h3>
+
+<ul>
+<li>Hosted runners</li>
+<li>Reusable actions</li>
+<li>Workflow YAML</li>
+<li>Repository-native CI/CD</li>
+
+</ul>
+
 </div>
 
-<div class="row">
-<div>Configuration</div>
-<div>Jenkinsfile</div>
-<div>workflow.yml</div>
 </div>
 
-<div class="row">
-<div>Infrastructure</div>
-<div>Controller + Agents</div>
-<div>Hosted Runners</div>
+</section>
+
+<section class="decisions">
+
+<div class="section-label">ENGINEERING DECISIONS</div>
+
+<h2>Production choices</h2>
+
+<div class="decision-grid">
+
+<div class="decision">
+<h3>IAM over Access Keys</h3>
+<p>Temporary credentials instead of storing secrets on the server.</p>
 </div>
 
-<div class="row">
-<div>Secrets</div>
-<div>Credentials Plugin</div>
-<div>GitHub Secrets</div>
+<div class="decision">
+<h3>Docker Group Permissions</h3>
+<p>Configured at the operating-system level instead of inside Jenkins.</p>
 </div>
 
-<div class="row">
-<div>Marketplace</div>
-<div>Plugins</div>
-<div>Reusable Actions</div>
+<div class="decision">
+<h3>Official Docker Repository</h3>
+<p>Installed Docker CE from the upstream repository.</p>
+</div>
+
+<div class="decision">
+<h3>Express Hardening</h3>
+<p>Added Helmet and Compression for a production-ready backend.</p>
 </div>
 
 </div>
 
 </section>
 
-<!-- TIMELINE -->
+<section class="live-terminal">
 
-<section id="timeline" class="timeline">
-
-<div class="section-title">
-<h2>Migration Timeline</h2>
-<p>The actual implementation journey documented throughout the project.</p>
-</div>
-
-<div class="timeline-list">
-
-<div class="timeline-item">GitHub Repository Created</div>
-<div class="timeline-item">Security Group Configured</div>
-<div class="timeline-item">IAM Role Attached</div>
-<div class="timeline-item">AWS CLI Installed</div>
-<div class="timeline-item">Docker Installed</div>
-<div class="timeline-item">Java Installed</div>
-<div class="timeline-item">Jenkins Installed</div>
-<div class="timeline-item">Plugins Configured</div>
-<div class="timeline-item">Docker Permissions Fixed</div>
-<div class="timeline-item">GitHub Actions Migration</div>
-
-</div>
-
-</section>
-
-<!-- LIVE LOGS -->
-
-<section class="logs">
-
-<div class="section-title">
-<h2>Live Pipeline Simulation</h2>
-<p>Click "Run Migration Demo" to animate the pipeline.</p>
-</div>
-
-<div class="terminal">
-
-<div class="terminal-header">
+<div class="terminal-head">
 <div class="dots"></div>
-<span>migration.log</span>
+<span>workflow.log</span>
 </div>
 
-<pre id="terminal-output">Waiting for pipeline execution...</pre>
+<pre id="terminal-output">Waiting for migration...
+</pre>
 
-</div>
-
-</section>
-
-<!-- CTA -->
-
-<section class="cta">
-
-<h2>Modernize the pipeline.<br>Keep shipping faster.</h2>
-
-<p>
-This project demonstrates how a legacy Jenkins workflow can evolve into
-a maintainable GitHub Actions pipeline using Docker and AWS.
-</p>
-
-<button id="run-demo-secondary" class="primary-btn">
-Start Workflow
+<button id="run-demo-secondary">
+> execute workflow
 </button>
 
 </section>
@@ -413,33 +331,11 @@ Start Workflow
 
 <footer>
 
-<div class="footer-brand">
+<p>Built by Arnold Bernard</p>
 
-<div class="brand-logo">AB</div>
-
-<div>
-<h3>Arnold Bernard</h3>
-<span>DevOps Engineer</span>
-</div>
-
-</div>
-
-<p>
-Portfolio Project • Jenkins → GitHub Actions Migration
-</p>
-
-<div class="footer-links">
-
-<a href="#">GitHub</a>
-<a href="#architecture">Architecture</a>
-<a href="#workflow">Pipeline</a>
-<a href="#timeline">Timeline</a>
-
-</div>
+<p>Portfolio Project · Jenkins → GitHub Actions Migration</p>
 
 </footer>
-
-</div>
 
 <script src="app.js"></script>
 

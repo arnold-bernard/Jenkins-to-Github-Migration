@@ -10,6 +10,7 @@ app.disable("x-powered-by");
 app.use(helmet());
 app.use(compression());
 
+// Serve frontend
 app.use(express.static(path.join(__dirname, "public")));
 
 // Health endpoint
@@ -24,27 +25,27 @@ app.get("/health", (req, res) => {
   });
 });
 
-// Project metadata
+// Project metadata API
 app.get("/api/migration", (req, res) => {
   res.json({
     title: "Jenkins → GitHub Actions Migration",
     owner: "Arnold Bernard",
-    status: "Portfolio Project",
+    project: "CI/CD Migration Command Center",
     cloud: "AWS EC2",
     registry: "Amazon ECR",
     runtime: "Docker",
     pipeline: [
-      "Source",
-      "Test",
-      "Build",
+      "Checkout",
+      "Tests",
+      "Docker Build",
       "Security",
-      "Container",
+      "ECR Push",
       "Deploy"
     ]
   });
 });
 
-// Catch-all for SPA behavior
+// Fallback route
 app.get("/{*any}", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
@@ -52,13 +53,14 @@ app.get("/{*any}", (req, res) => {
 if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`
-========================================
- Jenkins → GitHub Actions Migration
-----------------------------------------
- Owner : Arnold Bernard
- Server: http://localhost:${PORT}
- Health: http://localhost:${PORT}/health
-========================================
+=============================================
+ CI/CD Migration Command Center
+---------------------------------------------
+ Owner   : Arnold Bernard
+ Server  : http://localhost:${PORT}
+ Health  : http://localhost:${PORT}/health
+ API     : http://localhost:${PORT}/api/migration
+=============================================
 `);
   });
 }
