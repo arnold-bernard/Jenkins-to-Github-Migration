@@ -7,7 +7,19 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 app.disable("x-powered-by");
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com"],
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+        imgSrc: ["'self'", "data:"]
+      }
+    }
+  })
+);
 app.use(compression());
 
 // Serve frontend
