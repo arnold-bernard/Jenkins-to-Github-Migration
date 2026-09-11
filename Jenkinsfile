@@ -3,23 +3,27 @@ pipeline {
     agent any
 
     tools {
-      nodejs 'nodejs22'
+      nodejs 'NodeJS22'
     }  
   
     environment {
-        AWS_REGION     = 'ap-south-1'
-        ECR_REPOSITORY = 'jenkins-migration-demo'
+        AWS_REGION     = 'us-east-1'
+        ECR_REPOSITORY = 'jenkins-to-github-migration'
         IMAGE_TAG      = "${BUILD_NUMBER}"
         APP_PORT       = '8081'
     }
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
+       stage('Checkout') {
+    steps {
+        checkout([
+            $class: 'GitSCM', 
+            branches: [[name: 'main']], 
+            userRemoteConfigs: [[url: 'https://github.com/arnold-bernard/Jenkins-to-Github-Migration.git']]
+        ])
+    }
+}
 
         stage('Test') {
             steps {
@@ -65,7 +69,6 @@ pipeline {
 
                 sh '''
                     echo "Building Docker image..."
-
                     docker build \
                         -t ${ECR_REPOSITORY}:${IMAGE_TAG} .
 
