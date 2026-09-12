@@ -15,7 +15,8 @@ app.use(
         styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
         fontSrc: ["'self'", "https://fonts.gstatic.com"],
         scriptSrc: ["'self'", "'unsafe-inline'"],
-        imgSrc: ["'self'", "data:"]
+        imgSrc: ["'self'", "data:"],
+        upgradeInsecureRequests: null
       }
     }
   })
