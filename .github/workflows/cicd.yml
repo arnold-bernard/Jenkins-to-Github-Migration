@@ -15,8 +15,8 @@ permissions:
   contents: read
 
 env:
-  AWS_REGION: ap-south-1
-  ECR_REPOSITORY: migration-pipeline-reg
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: jenkins-to-github-migration
   IMAGE_TAG: ${{ github.sha }}
 
 jobs:
@@ -36,7 +36,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version: 20
 
 
       - name: Install dependencies
