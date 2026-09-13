@@ -44,6 +44,7 @@ jobs:
 
 
       - name: Run tests
+        working-directory: .
         run: npm test
 
 
@@ -106,7 +107,7 @@ jobs:
       - name: Deploy using AWS Systems Manager
         env:
           EC2_INSTANCE_ID: ${{ vars.EC2_INSTANCE_ID }}
-          ECR_REGISTRY: ${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.ap-south-1.amazonaws.com
+          ECR_REGISTRY: ${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com
 
         run: |
 
