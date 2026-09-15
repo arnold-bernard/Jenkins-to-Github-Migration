@@ -46,9 +46,6 @@ jobs:
       - name: Run tests
         working-directory: .
         run: npm test
-        
-      - name: Debug OIDC Claims
-        uses: github/actions-oidc-debugger@main
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v6
