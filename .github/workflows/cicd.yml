@@ -47,6 +47,11 @@ jobs:
         working-directory: .
         run: npm test
 
+      - name: Debug GitHub Context
+        run: |
+        echo "Repository: ${{ github.repository }}"
+        echo "Ref: ${{ github.ref }}"
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v6
         with:
