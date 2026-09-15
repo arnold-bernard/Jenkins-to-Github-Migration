@@ -1,10 +1,10 @@
-#test01
+# test02
 name: Jenkins Migration CI-CD
+
 on:
   push:
     branches:
       - main
-
   pull_request:
     branches:
       - main
@@ -26,7 +26,6 @@ env:
 jobs:
   build-test-push:
     name: Build, Test and Push
-
     runs-on: ubuntu-latest
 
     steps:
@@ -49,6 +48,18 @@ jobs:
         run: |
           echo "Repository: ${{ github.repository }}"
           echo "Branch: ${{ github.ref }}"
+
+      # TEMPORARY: Remove after OIDC is working
+      - name: Show OIDC Token Claims
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+
+          TOKEN=$(curl -s \
+            -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=sts.amazonaws.com" | jq -r '.value')
+
+          echo "$TOKEN" | cut -d '.' -f2 | base64 -d 2>/dev/null | jq
 
       - name: Configure AWS Credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v6
@@ -85,10 +96,8 @@ jobs:
 
   deploy:
     name: Deploy to Application EC2
-
     if: github.event_name == 'push'
     needs: build-test-push
-
     runs-on: ubuntu-latest
 
     steps:
